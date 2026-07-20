@@ -1,0 +1,42 @@
+import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'screens/login_screen';
+import 'services/firestore_service.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  try {
+    await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+    // Intento limpiar reservas antiguas al iniciar la app (no bloqueante)
+    try {
+      await FirestoreService.instance.expireOldReservations(Duration(hours: 12));
+    } catch (_) {
+      // Ignorar si Firestore no está configurado o falla la limpieza
+    }
+  } catch (e) {
+    // Si no hay opciones generadas de Firebase, usar inicialización por defecto
+    debugPrint('Opciones de Firebase no encontradas. Ejecutando sin Firebase en web.');
+    await Firebase.initializeApp();
+  }
+  runApp(const BusRiderGuaricoApp());
+}
+
+class BusRiderGuaricoApp extends StatelessWidget {
+  const BusRiderGuaricoApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Bus San Juan - Ortiz - Mellado',
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red).copyWith(secondary: Colors.black),
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.black, foregroundColor: Colors.white),
+        elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white)),
+      ),
+      home: LoginScreen(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}

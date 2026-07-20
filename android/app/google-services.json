@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "747318246901",
+    "project_id": "tesis-rider-san-juan",
+    "storage_bucket": "tesis-rider-san-juan.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747318246901:android:c741b9129e785d9f9874bc",
+        "android_client_info": {
+          "package_name": "com.example.bus_rider_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGsEiW11vXReGrEKHWIt_dpcMIxGnmpvQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

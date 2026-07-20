@@ -1,0 +1,9 @@
+{
+  "name": "expire-reservations",
+  "private": true,
+  "engines": { "node": "18" },
+  "dependencies": {
+    "firebase-admin": "^11.9.0",
+    "firebase-functions": "^4.3.0"
+  }
+}
